@@ -62,4 +62,9 @@
   background-color: #262F38;
   border-radius: 50%;
   display: inline-block;
+  align-content: center;
 }
+
+/* .click:hover {
+  background-color: orange;
+} */

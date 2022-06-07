@@ -1,23 +1,22 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { Stack, Fab } from '@mui/material';
 
-const useHover = () => {
-    const [hovered, setHovered] = useState<boolean>();
-
-    const eventHandlers = useMemo(() => (
-        {
-            onmouseover() { setHovered(true) },
-            onmouseout() { setHovered(false) }
-        }
-    ), []);
-}
-
 const RatingComponent: React.FC = () => {
-
+    // const [hovered, eventHandlers] = useHover();
+    const [hovered, setHovered] = useState<boolean>(false);
+    const handleHoverEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.currentTarget.style.backgroundColor = 'orange';
+        setHovered(() => true);
+    }
+    const handleHoverLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.currentTarget.style.backgroundColor = '#262F38';
+        setHovered(() => false);
+    }
     const dots = [1, 2, 3, 4, 5].map((number) =>  
         <Fab key={number.toString()}
             style={{ backgroundColor: '#262f38'}}
-            >{number}</Fab>
+            onMouseEnter={handleHoverEnter}
+            onMouseLeave={handleHoverLeave}>{number}</Fab>
     );
 
     return (
